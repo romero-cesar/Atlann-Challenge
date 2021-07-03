@@ -70,7 +70,7 @@
         </form>
 
 		<script type="text/javascript">
-			function eliminarEmpleado(idRol) {
+			function eliminarRol(idRol) {
 				if(confirm("Deseas eliminar el rol?")) {
 					$("#idRol").val(idRol);
 			        $("#form-delete").submit();
