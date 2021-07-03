@@ -22,6 +22,7 @@
             </div>
         </header>
         <div class="row mt-4 bg-light">
+        	@yield('menu')
             @yield("contenido")
         </div>
     </body>

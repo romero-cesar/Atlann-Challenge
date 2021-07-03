@@ -49,9 +49,67 @@ Route::group(['prefix' => 'empleados'], function() {
         ]
     );
 
-    Route::delete('/{empleadoId}', [
+    Route::delete('/eliminar', [
         'uses' => 'EmpleadoController@eliminar',
         'as' => 'eliminar'
         ]
     );
 });
+
+Route::group(['prefix' => 'roles'], function() {
+	Route::get('/', [
+	    'uses' => 'RolController@index',
+	    'as' => 'index'
+	    ]
+	);
+
+    Route::get('/crear', [
+        'uses' => 'RolController@crear',
+        'as' => 'crear'
+        ]
+    );
+
+    Route::post('/guardar', [
+        'uses' => 'RolController@guardar',
+        'as' => 'guardar'
+        ]
+    );
+
+    Route::get('/editar/{rolId}', [
+        'uses' => 'RolController@editar',
+        'as' => 'editar'
+        ]
+    );
+
+    Route::put('/actualizar', [
+        'uses' => 'RolController@actualizar',
+        'as' => 'actualizar'
+        ]
+    );
+
+    Route::delete('/eliminar', [
+        'uses' => 'RolController@eliminar',
+        'as' => 'eliminar'
+        ]
+    );
+});
+
+Route::get('/asignar-rol-empleado/{empleadoId}', [
+	'uses' => 'EmpleadoRolController@indexEmpleado',
+	'as' => 'indexEmpleado'
+]);
+
+Route::get('/asignar-empleado-rol/{rolId}', [
+	'uses' => 'EmpleadoRolController@indexRol',
+	'as' => 'indexRol'
+]);
+
+Route::post('/asignar-rol-empleado', [
+	'uses' => 'EmpleadoRolController@asignarRolEmpleado',
+	'as' => 'asignarRolEmpleado'
+]);
+
+Route::post('/asignar-empleado-rol', [
+	'uses' => 'EmpleadoRolController@asignarEmpleadoRol',
+	'as' => 'asignarEmpleadoRol'
+]);

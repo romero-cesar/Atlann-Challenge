@@ -20,7 +20,7 @@ class EmpleadoController extends Controller
 
     public function crear() {
     	return view('empleados', [
-    			'tipoVista' => 'from',
+    			'tipoVista' => 'form',
                 'empleado' => new Empleado()
             ]
         );
@@ -68,5 +68,14 @@ class EmpleadoController extends Controller
 		$empleado->save();
         
         return redirect('empleados')->with(['mensaje' => 'Se ha actualizado exitosamente la información del empleado', 'tipo' => 'success']);
+    }
+
+    public function eliminar(Request $request) {
+    	$empleado = Empleado::findOrFail($request->idEmpleado);
+
+    	$empleado->roles()->sync([]);
+    	$empleado->delete();
+
+    	return redirect('empleados')->with(['mensaje' => 'Se ha eliminado exitosamente la información del empleado', 'tipo' => 'success']);
     }
 }
